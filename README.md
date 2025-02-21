@@ -1,3 +1,3 @@
 # Stockhacks
  
-Soham is yummuy to lick
+This is stockhacks
