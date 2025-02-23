@@ -1,3 +1,5 @@
+#Libraires:
+# pip install yfinance pandas numpy pywavelets tensorflow scikit-learn xgboost nltk
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import datetime
