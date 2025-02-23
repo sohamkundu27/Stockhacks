@@ -1,2 +1,11 @@
 # Stockhacks
  
+This model combines multiple predictive techniques: an XGBoost model, an LSTM-based neural network, and an SVR, with a meta-model (Gradient Boosting Regressor) that learns how to weight these individual forecasts plus various technical, fundamental, and sentiment features. By integrating different approaches, we aim to capture diverse market signals and achieve a more accurate prediction than any single method alone.
+
+For feature engineering, we compute standard technical indicators (RSI, MACD, Bollinger Bands, Stochastic Oscillator, and VWAP) to capture short-term momentum and volatility. We also wavelet-denoise the closing price to reduce noise, then create lag features from this smoother series. Furthermore, we add fundamental metrics (trailing PE, dividend yield, price-to-book, and profit margins) from Yahoo Finance, plus a Markov chain “up/down” probability for daily returns, and a news-based sentiment score (using NLTK’s VADER).
+
+We source historical prices, volume, and fundamentals from Yahoo Finance. Our data preparation includes an 80/20 time-series split and a grid-search on XGBoost parameters (n_estimators, learning_rate, max_depth). The LSTM and SVR provide additional forecasts, and the final Gradient Boosting model merges them all. We rely on RMSE to gauge performance and conduct a rolling backtest over the last 30 days to approximate out-of-sample behavior.
+
+Several insights stand out. First, wavelet-denoising helps the model focus on medium-range trends rather than day-to-day fluctuations. Second, although fundamentals matter less for a two-day horizon, they can still capture shifts in market perception, especially around earnings. Third, sentiment features can be noisy but valuable when sudden enthusiasm or fear grips the market. Finally, stable market conditions generally yield lower RMSE, whereas volatility can pose challenges.
+
+Possible improvements include incorporating more alternative data—such as macroeconomic indicators or social media sentiment—and exploring advanced architectures like Transformers or adaptive weighting for each forecast. Overall, our strategy of fusing multiple predictive methods into a single ensemble helps smooth out each individual model’s weaknesses and yields a more robust short-term forecasting tool.
