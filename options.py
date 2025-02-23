@@ -1,4 +1,4 @@
-# pip install yfinance pandas numpy PyWavelets statsmodels tensorflow scikit-learn xgboost
+# pip install yfinance pandas numpy PyWavelets statsmodels scikit-learn xgboost
 import datetime
 import yfinance as yf
 import pandas as pd
