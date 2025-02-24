@@ -21,7 +21,7 @@ nltk.download('vader_lexicon', quiet=True)
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Global parameters
-ticker = "FUBO"
+ticker = input("Ticker: ")
 FORECAST_HORIZON = 2
 
 def safe_float(val):
